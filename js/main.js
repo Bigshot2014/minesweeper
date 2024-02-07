@@ -5,17 +5,35 @@ const MINE = '💣'
 const FLAG = '🏁'
 
 
-var countMines = 0
+var minesNegsCount = 0
 
 
-var gBoard
+var gBoard = {
+    minesAroundCount: 4,
+    isShown: false,
+    isMine: false,
+    isMarked: false
+}
+
+
 var gLevel = {
     SIZE: 4,
     MINES: 2
 
 }
 
+var gGame
+
+
 function onInit() {
+
+    gGame = {
+        isOn: true,
+        shownCount: 0,
+        markedCount: 0,
+        secsPassed: 0
+    }
+
     gBoard = createBoard()
     setMinesNegsCount(gBoard)
     renderBoard(gBoard)
@@ -32,12 +50,17 @@ function createBoard() {
         }
     }
 
-    // //placing mines
-    board[2][3] = MINE
-    board[1][2] = MINE
 
+    var numOfMines = gLevel.MINES
 
+    for (let i = 0; i < numOfMines; i++) {
+        var randRow = getRandomIntInclusive(0, size - 1)
+        var randCol = getRandomIntInclusive(0, size - 1)
+        board[randRow][randCol] = MINE
+    }
+  
     return board
+
 }
 
 
@@ -48,26 +71,28 @@ function renderBoard() {
         for (let j = 0; j < gBoard[0].length; j++) {
             const cell = gBoard[i][j]
 
-            var className = (cell === 'S')? 'safe' : ''
+            var className = (cell === 'S')? 'safe' : 'mine'
 
-            strHTML += `<td class="cell ${className}"
-             onClick="cellClicked(this, ${i}, ${j}")>${cell}</td>\n`
+            const title = `Cell: ${i+1}, ${j+1}`
+
+            strHTML += `<td title="${title}" class="cell ${className}"
+             onClick="onCellClicked(this, ${i}, ${j})"><span>${cell}</span></td>\n`
         }
         strHTML += `</tr>\n`
+
     }
     const elCells = document.querySelector('.minesweeper-cells')
     elCells.innerHTML = strHTML
-    console.log('hi')
 
 
-    // dom
-    //neg count
     const elNegs = document.querySelector('.neg-count span')
-    elNegs.innerHTML = countMines
+    elNegs.innerHTML = minesNegsCount
 
-    //mines count
+    var minesCount = gLevel.MINES
     const elMines = document.querySelector('.mines-count span')
-    elMines.innerHTML = gLevel.MINES
+    elMines.innerHTML = minesCount
+
+
 
 }
 
@@ -82,27 +107,36 @@ function setMinesNegsCount(rowIdx, colIdx, board) {
 
             var currCell = board[i][j]
 
-            if (currCell === MINE) countMines++
+            if (currCell === MINE) minesNegsCount++
         }
     }
-    console.log('countMines:', countMines) 
-    return countMines
+    return minesNegsCount
 
 
 }
 
 function onCellClicked(elCell, i, j) {
-    const cell =gBoard[i][j]
 
     console.log('Cell Clicked: ', elCell, i, j)
-    
-    const minesCount = setMinesNegsCount(i, j, gBoard)
-    console.log('number of neg mines: ', minesCount)
+    const negCount = setMinesNegsCount(i, j, gBoard)
+    elCell.classList.toggle('visible')
+    renderBoard(minesNegsCount)
+    minesNegsCount = 0
+
     
 }
 
+function onCellMarked(elCell, i, j) {
 
+}
 
+function checkGameOver() {
+
+}
+
+function expandShown(board, elCell, i, j) {
+
+}
 
 
 

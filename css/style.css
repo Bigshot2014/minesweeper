@@ -13,12 +13,12 @@ h1 {
 }
 
 .info-container {
-    height: 50px;
+    height: 100px;
     background-color: rgb(41, 185, 144);
 }
 
 .mine-container {
-    height: 300px;
+    height: 500px;
     background-color: #5f9ba4db;
     display: flex;
     align-items: center;
@@ -37,8 +37,23 @@ table {
 td {
     border: 0.1px solid black;
     width: 20px;
-    /* background-image: url(../img/grass-pattern.jpg); */
+    height: 20px;
     background-color: green;
     background-size: 100%;
     border-radius: 12px 0;
+    color: black;
 }
+
+.footer {
+    height: 40px;
+    background-color: aquamarine;
+}
+
+.cell span {
+    background-color: red;
+}
+
+.cell.visible span { 
+    background-color: blue;
+}
+
