@@ -3,8 +3,8 @@
 }
 
 body {
-    background-color: #59B4C3;
     text-align: center;
+    background-image: url(../img/blue-bg.jpg);
     
 }
 
@@ -14,46 +14,60 @@ h1 {
 
 .info-container {
     height: 100px;
-    background-color: rgb(41, 185, 144);
+    background-color: #525CEB;
+
+    
+}
+
+.info-container button {
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    background-color: #3D3B40;
+    border: 0.5px solid #525cebd6;
+    border: 0.5px solid #a0a5e8d6;
+    margin-left: 10px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .mine-container {
-    height: 500px;
-    background-color: #5f9ba4db;
+    background-color: #5f9ba408;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 table {
-    border: 1px solid black;
-    border-radius: 8px;
-    width: 250px;;
-    height: 250px;
-    background-color: white;
+    border: 20px solid #F8EDFF;
+    border-radius: 08px 8px;
+    background-color: #BFCFE7;
     cursor: pointer;
 }
 
 td {
-    border: 0.1px solid black;
-    width: 20px;
-    height: 20px;
-    background-color: green;
-    background-size: 100%;
-    border-radius: 12px 0;
+    border: 2px solid black;
+    height: 40px;
+    width: 40px;
+    background-color: #BFCFE7;
+    border-radius: 2px;
     color: black;
 }
 
 .footer {
-    height: 40px;
-    background-color: aquamarine;
+    background-color: #3D3B40;
+    height: 100px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
 }
 
-.cell span {
-    background-color: red;
-}
-
-.cell.visible span { 
-    background-color: blue;
+.footer h1 {
+    font-size: 20px;
 }
 

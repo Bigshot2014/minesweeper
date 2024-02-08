@@ -17,7 +17,7 @@ var gBoard = {
 
 
 var gLevel = {
-    SIZE: 4,
+    SIZE: 4, 
     MINES: 2
 
 }
@@ -26,6 +26,8 @@ var gGame
 
 
 function onInit() {
+
+    
 
     gGame = {
         isOn: true,
@@ -37,8 +39,9 @@ function onInit() {
     gBoard = createBoard()
     setMinesNegsCount(gBoard)
     renderBoard(gBoard)
-}
 
+
+}
 
 function createBoard() {
     const size = gLevel.SIZE
@@ -63,7 +66,6 @@ function createBoard() {
 
 }
 
-
 function renderBoard() {
     var strHTML = ''
     for (let i = 0; i < gBoard.length; i++) {
@@ -73,7 +75,7 @@ function renderBoard() {
 
             var className = (cell === 'S')? 'safe' : 'mine'
 
-            const title = `Cell: ${i+1}, ${j+1}`
+            const title = `Cell: ${i}, ${j}`
 
             strHTML += `<td title="${title}" class="cell ${className}"
              onClick="onCellClicked(this, ${i}, ${j})"><span>${cell}</span></td>\n`
@@ -82,13 +84,13 @@ function renderBoard() {
 
     }
     const elCells = document.querySelector('.minesweeper-cells')
-    elCells.innerHTML = strHTML
+    elCells.innerHTML = strHTML 
 
 
     const elNegs = document.querySelector('.neg-count span')
     elNegs.innerHTML = minesNegsCount
 
-    var minesCount = gLevel.MINES
+    const minesCount = gLevel.MINES
     const elMines = document.querySelector('.mines-count span')
     elMines.innerHTML = minesCount
 
@@ -116,10 +118,13 @@ function setMinesNegsCount(rowIdx, colIdx, board) {
 }
 
 function onCellClicked(elCell, i, j) {
+    const cell = gBoard[i][j]
+    elCell.classList.add('selected')
 
+    
+    
     console.log('Cell Clicked: ', elCell, i, j)
     const negCount = setMinesNegsCount(i, j, gBoard)
-    elCell.classList.toggle('visible')
     renderBoard(minesNegsCount)
     minesNegsCount = 0
 
@@ -138,6 +143,18 @@ function expandShown(board, elCell, i, j) {
 
 }
 
+function onSetLevel(level) {
+    const levelSizes = [
+        4, 8, 12
+    ]
+    const numOfMines = [
+        2, 14, 32
+    ]
+
+    gLevel.SIZE = levelSizes[level]
+    gLevel.MINES = numOfMines[level]
+    onInit(level)
+}
 
 
 

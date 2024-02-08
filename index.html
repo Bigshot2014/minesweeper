@@ -6,28 +6,28 @@
     <title>Minesweeper</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="onInit()">
+<body onload="onInit(0)">
     <h1>Minesweeper</h1>
     <div class="info-container">
         <div class="neg-count">Neighboors: <span>?</span></div>
         <div class="mines-count">Mines: <span>0</span></div>
-        <div class="levels">Levels:
-            <button onclick="onInit(0)">Beginner</button>
-            <button onclick="onInit(1)">Medium</button>
-            <button onclick="onInit(2)">Expert</button>
+        <div class="game-level">
+            <button onclick="onSetLevel(0)">Beginner</button> 
+            <button onclick="onSetLevel(1)">Medium</button> 
+            <button onclick="onSetLevel(2)">Expert</button> 
         </div>
         
     </div>
     <div class="mine-container">
     
-    <table class="minesw-board">
+    <table class="minesweeper-board">
 
         <tbody class="minesweeper-cells">  
         </tbody>
 
     </table>
 </div>
-<div class="footer">Moshik Alper</div>
+<div class="footer"><h1>Moshik Alper</h1></div>
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
 </body>
