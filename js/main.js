@@ -17,7 +17,7 @@ var gBoard = {
 
 
 var gLevel = {
-    SIZE: 4, 
+    SIZE: 4,
     MINES: 2
 
 }
@@ -27,7 +27,7 @@ var gGame
 
 function onInit() {
 
-    
+    resetTimer()
 
     gGame = {
         isOn: true,
@@ -39,6 +39,7 @@ function onInit() {
     gBoard = createBoard()
     setMinesNegsCount(gBoard)
     renderBoard(gBoard)
+    startTimer()
 
 
 }
@@ -48,7 +49,7 @@ function createBoard() {
     const board = []
     for (let i = 0; i < size; i++) {
         board[i] = []
-        for (let j = 0; j < size; j++ ) {
+        for (let j = 0; j < size; j++) {
             board[i][j] = SAFE
         }
     }
@@ -61,7 +62,7 @@ function createBoard() {
         var randCol = getRandomIntInclusive(0, size - 1)
         board[randRow][randCol] = MINE
     }
-  
+
     return board
 
 }
@@ -73,7 +74,7 @@ function renderBoard() {
         for (let j = 0; j < gBoard[0].length; j++) {
             const cell = gBoard[i][j]
 
-            var className = (cell === 'S')? 'safe' : 'mine'
+            var className = (cell === 'S') ? 'safe' : 'mine'
 
             const title = `Cell: ${i}, ${j}`
 
@@ -84,7 +85,7 @@ function renderBoard() {
 
     }
     const elCells = document.querySelector('.minesweeper-cells')
-    elCells.innerHTML = strHTML 
+    elCells.innerHTML = strHTML
 
 
     const elNegs = document.querySelector('.neg-count span')
@@ -121,14 +122,11 @@ function onCellClicked(elCell, i, j) {
     const cell = gBoard[i][j]
     elCell.classList.add('selected')
 
-    
-    
-    console.log('Cell Clicked: ', elCell, i, j)
     const negCount = setMinesNegsCount(i, j, gBoard)
     renderBoard(minesNegsCount)
     minesNegsCount = 0
 
-    
+
 }
 
 function onCellMarked(elCell, i, j) {

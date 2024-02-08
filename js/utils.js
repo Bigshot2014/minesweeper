@@ -23,39 +23,39 @@ function getRandomInt(min, max) {
 }
 
 
-// for (let i = rowIdx - 1; i <= rowIdx + 1; i++) {
-//     if (i < 0 || i >- board.length) continue
-//     for (let j = colIdx -1; j <= colIdx + 1; j++) {
-//         if ( i === rowIdx && j === coldIdx) continue
-//         if ( j < 0 || j >= board[0].length) continue
-//         var currCell = board[i][j]
-//         if (currCell.isSeat && !currCell.isBooked) count++
-//     }
-// }
-// return count
+function startTimer() {
 
 
-// function getRandomColor() {
-//     var letters = '0123456789ABCDEF';
-//     var color = '#';
-//     for (var i = 0; i < 6; i++) {
-//         color += letters[Math.floor(Math.random() * 16)];
-//     }
-//     return color;
-// }
+    var timer = document.getElementById("timer").innerHTML
+    var arr = timer.split(":")
+    var hour = parseInt(arr[0])
+    var min = parseInt(arr[1])
+    var sec = parseInt(arr[2])
+
+    if (sec === 59) {
+        if (min === 59) {
+            hour++
+            min = 0
+            if (hour < 10) hour = '0' + hour
+        } else {
+            min++
+        }
+        sec = 0
+    } else {
+        sec++
+    }
+
+    min = min < 10 ? '0' + min : min
+    sec = sec < 10 ? '0' + sec : sec
+
+    document.getElementById("timer").innerHTML = hour + ':' + min + ':' + sec
+    setTimeout(startTimer, 1000)
 
 
-// function playSound() {
-//     const sound = new Audio('sound/sound.mp4')
-//     sound.play()
-// }
+}
 
-// function showModal() {
-//     const elModal = document.querySelector('.modal')
-//     elModal.classList.remove('hide')
-// }
 
-// function hideModal() {
-//     const elModal = document.querySelector('.modal')
-//     elModal.classList.add('hide')
-// }
+function resetTimer() {
+    clearInterval(startTimer)
+    document.getElementById("timer").innerHTML = "00:00:00"
+}
